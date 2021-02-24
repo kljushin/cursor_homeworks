@@ -392,14 +392,14 @@ print('23.')
 print('list_A:', list_A)
 print('list_B:', list_B)
 
-raised_list_A = list(map(lambda a, b: a ** b, list_A, list_B))
+raised_list_A = list(map(lambda a, b: a + b, list_A, list_B))
 print('raised list_A:', raised_list_A)
 
 # Output:
 # 23.
 # list_A: [2, 3, 4]
 # list_B: [5, 6, 7]
-# raised list_A: [32, 729, 16384]
+# raised list_A: [7, 9, 11]
 
 # 24. Use reduce and lambda to compute the numbers of a lst_to_sort.
 
