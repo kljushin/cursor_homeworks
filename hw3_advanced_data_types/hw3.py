@@ -332,7 +332,8 @@ print('my  :', my_foo(1, 1))
 foo = lambda x, y, z: z if y < x and x > z else y  # test
 
 
-def my_foo(x, y, z): return z if y < x and x > z else y
+def my_foo(x, y, z):
+    return z if y < x and x > z else y
 
 
 print('19.')
