@@ -60,29 +60,25 @@ class School:
         return 'I`m get school_id method'
 
 
-# 6*. Create a new class SchoolBus that will inherit all of the methods from School and Bus and will have its own - bus_school_color
+# 6*. Create a new class SchoolBus that will inherit all of the methods from School
+# and Bus and will have its own - bus_school_color
 
 
-class SchoolBus(School):
-    def __init__(self, number_of_students, bus_school_color):
-        super().__init__(number_of_students)
+class SchoolBus(School, Bus):
+    def __init__(self, number_of_students, max_speed, mileage, seating_capacity, bus_school_color):
+        School.__init__(self, number_of_students)
+        Bus.__init__(self, max_speed, mileage, seating_capacity)
         self.bus_school_color = bus_school_color
 
 
-school_bus = SchoolBus(123, 'yellow')
+school_bus = SchoolBus(123, 500, 0, 100, 'yellow')
 
-print('Call method get_school_id:', school_bus.get_school_id())
-print('Type of school_bus object:', type(school_bus))
-print('Is school_bus instance of Bus?:', isinstance(school_bus, Bus))
-print('Is school_bus instance of Vehicle?:', isinstance(school_bus, Vehicle))
+print(f'school_bus: {school_bus.__dict__} ')
 print('Is class SchoolBus inheritance class Vehicle?', issubclass(SchoolBus, Vehicle))  # Task 4
 
 # Output:
-# Call method get_school_id: I`m get school_id method
-# Type of school_bus object: <class '__main__.SchoolBus'>
-# Is school_bus instance of Bus?: False
-# Is school_bus instance of Vehicle?: False
-# Is class SchoolBus inheritance class Vehicle? False
+# school_bus: {'number_of_students': 123, 'max_speed': 500, 'mileage': 0, 'seating_capacity': 100, 'bus_school_color': 'yellow'}
+# Is class SchoolBus inheritance class Vehicle? True
 
 # 7. Polymorphism: Create two classes: Bear, Wolf. Both of them should have make_sound method. Create two instances, one of Bear and one of Wolf,
 # make a tuple of it and by using for call their action using the same method.
