@@ -12,11 +12,11 @@ class Laptop:
     def __init__(self, laptop_name, laptop_model, battery_model, battery_type, battery_capacity):
         self.laptop_name = laptop_name
         self.laptop_model = laptop_model
-        self.battery_model = battery_model
-        self.battery_type = battery_type
-        self.battery_capacity = battery_capacity
+        # self.battery_model = battery_model
+        # self.battery_type = battery_type
+        # self.battery_capacity = battery_capacity
         # Composition
-        self.laptop_battery = Battery(self.battery_model, self.battery_type, self.battery_capacity)
+        self.laptop_battery = Battery(battery_model, battery_type, battery_capacity)
 
     def __str__(self):
         return f'{self.laptop_name} {self.laptop_model} with battery {self.laptop_battery}'
@@ -116,19 +116,19 @@ print(Calc.add_nums(1, 2, 10))
 
 
 class Pasta:
-    carbonara_ingredient = ['forcemeat', 'tomatoes']
-    bolognaise_ingredient = ['bacon', 'parmesan', 'eggs']
+    __carbonara_ingredient = ['forcemeat', 'tomatoes']
+    __bolognaise_ingredient = ['bacon', 'parmesan', 'eggs']
 
     def __init__(self, ingredients):
         self.ingredients = ingredients
 
     @classmethod
     def carbonara(cls):
-        return Pasta(cls.carbonara_ingredient)
+        return Pasta(cls.__carbonara_ingredient)
 
     @classmethod
     def bolognaise(cls):
-        return Pasta(cls.bolognaise_ingredient)
+        return Pasta(cls.__bolognaise_ingredient)
 
 
 pasta_1 = Pasta(["tomato", "cucumber"])
@@ -137,6 +137,7 @@ pasta_2 = Pasta.bolognaise()
 print(f'pasta_2 ingredients is {pasta_2.ingredients}')
 pasta_3 = Pasta.carbonara()
 print(f'pasta_3 ingredients is {pasta_3.ingredients}')
+
 
 # Output:
 # pasta_1 ingredients is ['tomato', 'cucumber']
@@ -311,17 +312,15 @@ class Student:
         self.name = name
 
 
-student_object = Student(id=124, name='Boris')
+student = Student(id=124, name='Boris')
 
-student_object.email = 'asd@qwe.com'
-print(f'student_object.email = {student_object.email}')
+student.email = 'asd@qwe.com'
+student_email = getattr(student, 'email')
+print('student_email is', student_email)
 
-setattr(student_object, 'student_email', 'qwe@edu.com')
-print(f'student_object.student_email = {getattr(student_object, "student_email")}')
 
 # Output
-# student_object.email = asd@qwe.com
-# student_object.student_email = qwe@edu.com
+# student_email is asd@qwe.com
 
 
 # 11*.
