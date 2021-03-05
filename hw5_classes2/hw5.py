@@ -12,7 +12,7 @@ class Laptop:
     def __init__(self, laptop_name, laptop_model, battery_model, battery_type, battery_capacity):
         self.laptop_name = laptop_name
         self.laptop_model = laptop_model
-        
+
         # Composition
         self.laptop_battery = Battery(battery_model, battery_type, battery_capacity)
 
