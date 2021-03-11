@@ -14,6 +14,7 @@ class Bus(Vehicle):
         self.seating_capacity = seating_capacity
 
 
+
 bus1 = Bus(500, 1, 1)
 bus2 = Bus(100, 111, 0)
 for item in (bus1, bus2):
