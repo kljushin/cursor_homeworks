@@ -32,7 +32,7 @@ class Garden(metaclass=GardenMetaClass):
     def action_print(action_number, action):
         print(f'==== Action {action_number} {action} ====')
 
-    def garden_live(self):
+    def garden_life(self):
         '''
         This function simulating garden live with random actions
         :return:
@@ -405,5 +405,4 @@ plants = vegetables + fruits
 garden_pests = NastyPests('worm', 10)  # Implies that there is only one group of pests in the garden
 tom = StarGardener('Tom', plants)  # Implies that there is only one gardener in the garden
 garden = Garden(vegetables=vegetables, fruits=fruits, pests=garden_pests, gardener=tom)
-garden.garden_live()
-
+garden.garden_life()
