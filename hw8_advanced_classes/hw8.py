@@ -21,7 +21,7 @@ class Animal(ABC):
         raise NotImplementedError('Method not implement!')
 
     def _power_regeneration(self, value_percent: float):
-        self.current_power += value_percent * self.current_power
+        self.current_power += round(value_percent * self.current_power)
         if self.current_power > self.max_power:
             self.current_power = self.max_power
         if self.current_power < self.min_power:
