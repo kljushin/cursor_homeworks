@@ -12,7 +12,7 @@ class Animal(ABC):
     def __init__(self, power: int, speed: int):
         self.id = None
         self.max_power = power
-        self.min_power = 1
+        self.min_power = 0
         self.current_power = power
         self.speed = speed
 
@@ -115,7 +115,7 @@ class Forest:
         __dead_animals = []  # list of animals with power = 0
         for item in self.animals:
             __animal = self.animals.get(item)
-            if __animal.current_power <= 1:
+            if __animal.current_power <= 0:
                 print(f'{__animal.__class__.__name__}\t\t{__animal.id} died')
                 __dead_animals.append(__animal)
                 continue
