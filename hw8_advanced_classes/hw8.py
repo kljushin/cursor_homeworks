@@ -21,7 +21,7 @@ class Animal(ABC):
         raise NotImplementedError('Method not implement!')
 
     def _power_regeneration(self, value_percent: float):
-        self.current_power += round(value_percent * self.current_power)
+        self.current_power += round(value_percent * self.max_power)
         if self.current_power > self.max_power:
             self.current_power = self.max_power
         if self.current_power < self.min_power:
@@ -155,7 +155,7 @@ if __name__ == "__main__":
             break
         for animal in forest:
             print('')
-            if animal.current_power > 1:
+            if animal.current_power > 0:
                 animal.eat(forest=forest)
             else:
                 print(f'{animal.__class__.__name__} {animal.id} already dead')
