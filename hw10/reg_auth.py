@@ -1,9 +1,12 @@
 import string
-import reg_auth_exceptions as ex
+import reg_auth_exceptions as ex  # exceptions
 import random
 
 
 class UsersDB:
+    '''
+    Database class
+    '''
     def __init__(self):
         self.users_db = {}
 
@@ -21,6 +24,9 @@ class UserToken:
 
 
 class Registration:
+    '''
+    Registration service
+    '''
     def __init__(self, database):
         self.db = database
 
@@ -39,14 +45,14 @@ class Registration:
                 print(self.db.users_db)
                 return '200'
 
-    def login_rules(self, login):
+    def login_rules(self, login):  # Check login
         if len(login) < 3:
             raise ex.LoginLengthException
         if not set(login).isdisjoint(string.punctuation):
             raise ex.LoginBlackListException
         return True
 
-    def psw_rules(self, psw):
+    def psw_rules(self, psw):  # Check password
         _low = set(string.ascii_lowercase)
         _upper = set(string.ascii_uppercase)
         _digits = set(string.digits)
@@ -61,7 +67,7 @@ class Registration:
             raise ex.PswDigitsNeededException
         return True
 
-    def email_rules(self, email):
+    def email_rules(self, email):  # Check email
         email_components = email.split('@')
         if not len(email_components) == 2:
             raise ex.EmailError
@@ -71,6 +77,9 @@ class Registration:
 
 
 class Auth:
+    '''
+    Authentication
+    '''
     def __init__(self, database):
         self.db = database
 
@@ -80,7 +89,7 @@ class Auth:
         else:
             raise ex.AuthError
 
-    def user_exist(self, user):
+    def user_exist(self, user):  # user exists check
         if user['login'] in list(self.db.users_db.keys()):
             if user['psw'] == self.db.users_db[user['login']]['psw']:
                 return True

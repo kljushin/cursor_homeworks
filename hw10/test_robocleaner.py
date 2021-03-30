@@ -2,8 +2,8 @@
 # Напишіть тести до класу робота пилососа
 # приклад тестів:
 # робот стартує з критичними значеннями заряду батареї, наповненості баку сміття і води
-# добавте аргумент час роботи (кількість ітерацій головного циклу), протестує чи зможе робот з певними вхідними даними закінчити прибирання
-# можете придумати свої тести
+# добавте аргумент час роботи (кількість ітерацій головного циклу), протестує чи зможе робот з певними вхідними
+# даними закінчити прибирання можете придумати свої тести
 
 import robo_cleaner
 import unittest
@@ -16,7 +16,7 @@ class TestRoboCleaner(unittest.TestCase):
         self.critical_water_level = 0
         self.steps = 1
         self.test_robot = robo_cleaner.RoboCleaner(self.critical_battery_level, self.critical_dust_level,
-                                                   self.critical_water_level, self.steps)
+                                                   self.critical_water_level, self.steps)  # instance with critical values
 
     def test_battery_use(self):
         with self.assertRaises(robo_cleaner.CriticalBatteryProblem):

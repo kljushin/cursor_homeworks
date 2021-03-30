@@ -24,34 +24,34 @@ class TestRegistration(unittest.TestCase):
     def test_login_rules(self):
         self.assertTrue(self.reg.login_rules('Boris'))
         with self.assertRaises(ex.LoginLengthException):
-            self.reg.login_rules('qw')
+            self.reg.login_rules('qw')  # Login should be more then 2 symbols
         with self.assertRaises(ex.LoginBlackListException):
-            self.reg.login_rules('qw*')
+            self.reg.login_rules('qw*')  # Login should be without specific symbols
 
     def test_psw_rules(self):
         self.assertTrue(self.reg.login_rules('Passw0rd'))
         with self.assertRaises(ex.PswLengthException):
-            self.reg.psw_rules('12')
+            self.reg.psw_rules('12')  # Password should be more then 5 symbols
         with self.assertRaises(ex.PswLowCaseNeededException):
-            self.reg.psw_rules('PASSSS')
+            self.reg.psw_rules('PASSSS')  # Password should contain lowercase letters
         with self.assertRaises(ex.PswUpperCaseNeededException):
-            self.reg.psw_rules('passss')
+            self.reg.psw_rules('passss')  # Password should contain uppercase letters
         with self.assertRaises(ex.PswDigitsNeededException):
-            self.reg.psw_rules('PaSSSS')
+            self.reg.psw_rules('PaSSSS')  # # Password should contain digits
 
     def test_email_rules(self):
         self.assertTrue(self.reg.email_rules('qwe@qwe.wqe'))
         with self.assertRaises(ex.EmailError):
-            self.reg.email_rules('qwe')
-            self.reg.email_rules('@qwe')
-            self.reg.email_rules('')
+            self.reg.email_rules('qwe')  # no @ detected
+            self.reg.email_rules('@qwe')  # no mailbox name detected
+            self.reg.email_rules('')  # email string is empty
 
     def test_reg_user(self):
         test_user = {'login': 'Login', 'psw': 'Passw0rd', 'email': 'login@email.com'}
-        self.assertEqual(self.reg.reg_user(test_user), '200')
+        self.assertEqual(self.reg.reg_user(test_user), '200')  # Success registration
 
         with self.assertRaises(ex.RegistrationUserExistError):
-            self.reg.reg_user(test_user)
+            self.reg.reg_user(test_user)  # User exist
 
 
 class TestAuth(unittest.TestCase):
@@ -59,9 +59,9 @@ class TestAuth(unittest.TestCase):
         db = reg_auth.UsersDB()
         db.add_user({'login': 'Login', 'psw': 'Passw0rd', 'email': 'login@email.com'})
         self.auth = reg_auth.Auth(db)
-        self.users = [[{'login': 'Login', 'psw': 'Passw0rd'}, True],
-                      [{'login': 'Login', 'psw': 'Passw0rd1'}, False],
-                      [{'login': 'Login1', 'psw': 'Passw0rd'}, False]
+        self.users = [[{'login': 'Login', 'psw': 'Passw0rd'}, True],  # Valid user
+                      [{'login': 'Login', 'psw': 'Passw0rd1'}, False],  # Wrong user
+                      [{'login': 'Login1', 'psw': 'Passw0rd'}, False]  # Wrong user
                       ]
 
     def test_user_exist(self):
@@ -69,10 +69,10 @@ class TestAuth(unittest.TestCase):
             self.assertIs(self.auth.user_exist(user[0]), user[1])
 
     def test_auth(self):
-        self.assertIsInstance(self.auth.auth(self.users[0][0]), reg_auth.UserToken)
+        self.assertIsInstance(self.auth.auth(self.users[0][0]), reg_auth.UserToken)  # Authorization complete
         with self.assertRaises(ex.AuthError):
             for item in range(1, len(self.users) - 1):
-                self.auth.auth(self.users[item][0])
+                self.auth.auth(self.users[item][0])  # Error auth
 
 
 if __name__ == '__main__':
