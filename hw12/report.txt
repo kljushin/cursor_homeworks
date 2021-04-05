@@ -1,0 +1,1 @@
+Average salary for parameters start_salary = 5500.0 end_salary = 10000.0 position = System Architect age = 34 language = Python is 5580.0

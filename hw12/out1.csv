@@ -1,0 +1,5 @@
+N,city,salary,Изменение.зарплаты.за.12.месяцев,position,exp,current_job_exp,language,specialization,age,sex,Образование,Университет,Еще.студент,English level,Размер.компании,Тип.компании,Предметная.область
+2400,Kyiv,3500,-170,DevOps,3,2,,,40,male,Высшее,Other вуз,False,выше среднего,свыше 1000 человек,Аутсорсинговая,"Embedded, Manufacturing, Інша"
+3099,Kyiv,3000,500,DevOps,3,2,,,36,male,Высшее,Other вуз,False,выше среднего,до 1000 человек,Аутсорсинговая,"Gambling, GameDev, Geospatial"
+3183,Kyiv,3000,600,DevOps,3,2,,,27,male,Два высших,НТУУ «КПИ»,False,продвинутый,до 50 человек,Аутсорсинговая,Telecom
+3706,Kyiv,2750,0,DevOps,3,2,,,24,male,Высшее,НТУУ «КПИ»,False,продвинутый,до 50 человек,Продуктовая,Telecom
