@@ -59,12 +59,15 @@ class Registration:
         set_psw = set(psw)
         if len(psw) < 6:
             raise ex.PswLengthException
+        if not set(set_psw).isdisjoint(string.punctuation):
+            raise ex.PasswordBlackListException
         if set_psw.isdisjoint(_low):
             raise ex.PswLowCaseNeededException
         if set_psw.isdisjoint(_upper):
             raise ex.PswUpperCaseNeededException
         if set_psw.isdisjoint(_digits):
             raise ex.PswDigitsNeededException
+
         return True
 
     def email_rules(self, email):  # Check email

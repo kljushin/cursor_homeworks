@@ -37,7 +37,9 @@ class TestRegistration(unittest.TestCase):
         with self.assertRaises(ex.PswUpperCaseNeededException):
             self.reg.psw_rules('passss')  # Password should contain uppercase letters
         with self.assertRaises(ex.PswDigitsNeededException):
-            self.reg.psw_rules('PaSSSS')  # # Password should contain digits
+            self.reg.psw_rules('PaSSSS')  # Password should contain digits
+        with self.assertRaises(ex.PasswordBlackListException):
+            self.reg.psw_rules('PaSS&SS')  # Password should be without specific symbols
 
     def test_email_rules(self):
         test_bad_emails = ['qwe',                    # no @ detected

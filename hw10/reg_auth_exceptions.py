@@ -22,6 +22,10 @@ class PswDigitsNeededException(Exception):
     pass
 
 
+class PasswordBlackListException(Exception):
+    pass
+
+
 class EmailError(Exception):
     pass
 
