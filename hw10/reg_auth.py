@@ -1,7 +1,7 @@
 import string
 import reg_auth_exceptions as ex  # exceptions
 import random
-
+import re
 
 class UsersDB:
     '''
@@ -68,12 +68,16 @@ class Registration:
         return True
 
     def email_rules(self, email):  # Check email
-        email_components = email.split('@')
-        if not len(email_components) == 2:
+        # email_components = email.split('@')
+        # if not len(email_components) == 2:
+        #     raise ex.EmailError
+        # if len(email_components[0]) == 0 or len(email_components[1]) == 0:
+        #     raise ex.EmailError
+        # return True
+        if re.match(r"^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$", email):
+            return True
+        else:
             raise ex.EmailError
-        if len(email_components[0]) == 0 or len(email_components[1]) == 0:
-            raise ex.EmailError
-        return True
 
 
 class Auth:

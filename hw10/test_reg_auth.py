@@ -40,11 +40,26 @@ class TestRegistration(unittest.TestCase):
             self.reg.psw_rules('PaSSSS')  # # Password should contain digits
 
     def test_email_rules(self):
-        self.assertTrue(self.reg.email_rules('qwe@qwe.wqe'))
-        with self.assertRaises(ex.EmailError):
-            self.reg.email_rules('qwe')  # no @ detected
-            self.reg.email_rules('@qwe')  # no mailbox name detected
-            self.reg.email_rules('')  # email string is empty
+        test_bad_emails = ['qwe',                    # no @ detected
+                           '@qwe',                   # wrong email
+                           'kl*ush@gmail.com',       # forbidden symbol
+                           'wrong email@gmail.com',  # space in mailbox name
+                           'qwe@super domen.com',    # space in mailserver name
+                           'klush@gma)il.com',       # wrong mailserver name
+                           'klush@gmail.c',          # wrong mailbox TLD
+                           'klush@@gmail.com',       # @@
+                           '']                       # Empty str
+
+        test_valid_emails = ['b.klush@gmail.com',
+                             'klush@gmail.com',
+                             'klush123@gmail.com',
+                             'klush123@gmail911.com']
+        for test_email in test_valid_emails:
+            self.assertTrue(self.reg.email_rules(test_email))
+
+        for test_email in test_bad_emails:
+            with self.assertRaises(ex.EmailError):
+                self.reg.email_rules(test_email)
 
     def test_reg_user(self):
         test_user = {'login': 'Login', 'psw': 'Passw0rd', 'email': 'login@email.com'}
